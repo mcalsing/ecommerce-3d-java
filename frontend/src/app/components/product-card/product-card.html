@@ -11,13 +11,13 @@
       <h3 class="text-lg font-semibold">{{ shade.name }}</h3>
       <p class="text-gray-600">R$ {{ shade.price }}</p>
 
-      <button  
-        type="button"
-        label="Visualizar 3D"
-        class="bg-blue-400 w-full rounded-md py-1"
+      <a
+        [attr.href]="shade?.url"
+        target="_blank"
+        class="bg-blue-400 w-full rounded-md py-1 inline-block text-center"
       >
         Visualização 3D
-      </button>
+      </a>
     </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { ProductService } from '../../services/product-service';
+import { Component, Input, inject } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
+
 
 @Component({
   selector: 'app-product-card',
@@ -10,5 +11,4 @@ import { ProductService } from '../../services/product-service';
 })
 export class ProductCard {
   @Input() shade: any;
-
 }
