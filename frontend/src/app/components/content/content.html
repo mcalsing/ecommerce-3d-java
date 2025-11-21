@@ -1,10 +1,17 @@
-<main class="p-6">
+<main class="p-6 max-w-[1440px] mx-auto">
 
-  <h2 class="text-2xl font-bold mb-4">Produtos</h2>
-
-  <div class="flex">
-    @for (item of shade; track item.id) {
-      <app-product-card [shade]="item"></app-product-card>
+  <h2 class="text-2xl font-bold mb-4">Bases</h2>
+  <div class="flex flex-wrap max-sm:justify-center">
+    @for (item of base; track item.id) {
+      <app-base-card [base]="item"></app-base-card>
     }
   </div>
+
+   <h2 class="text-2xl font-bold mb-4">Cúpulas</h2>
+  <div class="flex flex-wrap max-sm:justify-center">
+    @for (item of shade; track item.id) {
+      <app-shade-card [shade]="item"></app-shade-card>
+    }
+  </div>
+  
 </main>
