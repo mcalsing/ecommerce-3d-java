@@ -1,0 +1,23 @@
+<div class="p-4 ">
+  <div class="w-60 shadow-md rounded-xl overflow-hidden hover:shadow-lg shadow-black-500">
+
+    <img 
+      [src]="shade.image"
+      alt="Imagem do produto"
+      class="w-full h-48 object-cover"
+    />
+
+    <div class="p-4 space-y-2">
+      <h3 class="text-lg font-semibold">{{ shade.name }}</h3>
+      <p class="text-gray-600">R$ {{ shade.price }}</p>
+
+      <button  
+        type="button"
+        label="Visualizar 3D"
+        class="bg-blue-400 w-full rounded-md py-1"
+      >
+        Visualização 3D
+      </button>
+    </div>
+  </div>
+</div>
