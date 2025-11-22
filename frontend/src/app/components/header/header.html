@@ -7,20 +7,14 @@
       </a>
       <div class="justify-between items-center">
         <ul class="flex flex-row mt-0 gap-8 max-sm:gap-3">
-          <li>
-              <a href="#" class="py-2 text-gray-700 hover:border-b">Home</a>
-          </li>
-          <li>
-              <a href="#" class="py-2 text-gray-700 hover:border-b">Company</a>
-          </li>
-          <li>
-              <a href="#" class="py-2 text-gray-700 hover:border-b">Marketplace</a>
-          </li>
+          <li><a routerLink="/" class="py-2 text-gray-600 hover:border-b">Home</a></li>
+          <li><a routerLink="/company" class="py-2 text-gray-600 hover:border-b">Company</a></li>
+          <li><a routerLink="/marketplace" class="py-2 text-gray-600 hover:border-b">Marketplace</a></li>
         </ul>
       </div>
       <div class="flex items-center gap-5 max-sm:gap-2">
-        <a href="#" class="text-gray-800 text-sm">Log in</a>
-        <a href="#" class="text-gray-800 text-sm">Register</a>
+        <a routerLink="/login" class="text-gray-700 text-sm">Log in</a>
+        <a routerLink="/register" class="text-gray-700 text-sm">Register</a>
       </div>
     </div>
   </nav>
