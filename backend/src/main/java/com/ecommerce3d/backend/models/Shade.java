@@ -13,12 +13,15 @@ public class Shade {
 
   private String url;
 
+  private double price;
+
   public Shade() {
   }
 
-  public Shade(String url, String name) {
+  public Shade(String url, String name, double price) {
     this.url = url;
     this.name = name;
+    this.price = price;
   }
 
   public String getUrl() {
@@ -37,7 +40,11 @@ public class Shade {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
   }
 }

@@ -13,12 +13,15 @@ public class Base {
 
   private String url;
 
+  private double price;
+
   public Base() {
   }
 
-  public Base(String url, String name) {
+  public Base(String url, String name, double price) {
     this.url = url;
     this.name = name;
+    this.price = price;
   }
 
   public String getUrl() {
@@ -37,7 +40,11 @@ public class Base {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
   }
 }

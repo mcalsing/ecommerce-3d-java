@@ -19,17 +19,18 @@ public class Product {
 
   private String lampBaseColor;
 
-  private double price;
+  private double totalPrice;
 
   private Product() {
   }
 
-  public Product(double price, String lampBaseColor, Base lampBase, String lampShadeColor, Shade lampShade) {
-    this.price = price;
+  public Product(String lampBaseColor, Base lampBase, String lampShadeColor, Shade lampShade) {
     this.lampBaseColor = lampBaseColor;
     this.lampBase = lampBase;
     this.lampShadeColor = lampShadeColor;
     this.lampShade = lampShade;
+
+    calculateTotal();
   }
 
   public Long getId() {
@@ -68,11 +69,17 @@ public class Product {
     this.lampBaseColor = lampBaseColor;
   }
 
-  public double getPrice() {
-    return price;
+  public double getTotalPrice() {
+    return totalPrice;
   }
 
-  public void setPrice(double price) {
-    this.price = price;
+  public void setTotalPrice(double totalPrice) {
+    this.totalPrice = totalPrice;
+  }
+
+  public void calculateTotal() {
+    if (lampBase != null && lampShade != null) {
+      this.totalPrice = lampBase.getPrice() + lampShade.getPrice();
+    }
   }
 }

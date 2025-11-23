@@ -8,8 +8,6 @@ public class ProductDTO {
   private String lampShadeColor;
   private String lampBaseColor;
 
-  private double price;
-
   public ProductDTO() {
   }
 
@@ -43,14 +41,6 @@ public class ProductDTO {
 
   public void setLampBaseColor(String lampBaseColor) {
     this.lampBaseColor = lampBaseColor;
-  }
-
-  public double getPrice() {
-    return price;
-  }
-
-  public void setPrice(double price) {
-    this.price = price;
   }
 
 }

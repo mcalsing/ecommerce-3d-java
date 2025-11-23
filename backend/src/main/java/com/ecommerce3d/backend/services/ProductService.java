@@ -39,7 +39,6 @@ public class ProductService {
             .orElseThrow(() -> new RuntimeException("Shade not found"));
 
     Product product = new Product(
-            dto.getPrice(),
             dto.getLampBaseColor(),
             base,
             dto.getLampShadeColor(),
