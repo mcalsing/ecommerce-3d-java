@@ -25,4 +25,10 @@ public class ShadeController {
   public ResponseEntity<Shade> create(@RequestBody Shade shade) {
     return ResponseEntity.ok(service.create(shade));
   }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable Long id) {
+    service.delete(id);
+    return ResponseEntity.noContent().build(); // HTTP 204
+  }
 }

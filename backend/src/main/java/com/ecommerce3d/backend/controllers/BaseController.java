@@ -25,4 +25,10 @@ public class BaseController {
   public ResponseEntity<Base> create(@RequestBody Base base) {
     return ResponseEntity.ok(service.create(base));
   }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable Long id) {
+    service.delete(id);
+    return ResponseEntity.noContent().build(); // HTTP 204
+  }
 }

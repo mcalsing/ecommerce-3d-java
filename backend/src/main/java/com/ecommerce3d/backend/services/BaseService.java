@@ -23,4 +23,10 @@ public class BaseService {
   public Base create(Base base) {
     return repository.save(base);
   }
+
+  public void delete(Long id) {
+    Base base = repository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Base not found"));
+    repository.delete(base);
+  }
 }

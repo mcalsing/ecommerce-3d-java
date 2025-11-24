@@ -1,4 +1,4 @@
-package com.ecommerce3d.backend.services;
+package com.ecommerce3d.backend.producers;
 
 import com.ecommerce3d.backend.dtos.OrderDTO;
 import org.springframework.kafka.core.KafkaTemplate;

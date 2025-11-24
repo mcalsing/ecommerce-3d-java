@@ -23,4 +23,10 @@ public class ShadeSevice {
   public Shade create(Shade shade) {
     return repository.save(shade);
   }
+
+  public void delete(Long id) {
+    Shade shade = repository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Shade not found"));
+    repository.delete(shade);
+  }
 }

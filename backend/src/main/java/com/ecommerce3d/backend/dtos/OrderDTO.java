@@ -2,9 +2,28 @@ package com.ecommerce3d.backend.dtos;
 
 public class OrderDTO {
 
-  private Long orderId;
+  private Long userId;
 
   private Long productId;
 
-  private String stlFile;
+  public OrderDTO(Long userId, Long productId) {
+    this.userId = userId;
+    this.productId = productId;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
+
+  public Long getProductId() {
+    return productId;
+  }
+
+  public void setProductId(Long productId) {
+    this.productId = productId;
+  }
 }
