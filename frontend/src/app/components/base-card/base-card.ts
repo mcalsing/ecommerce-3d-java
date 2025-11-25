@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, inject } from '@angular/core';
+import { CartService } from '../../services/cart-service';
 
 @Component({
   selector: 'app-base-card',
@@ -9,4 +10,9 @@ import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 })
 export class BaseCard {
   base = input.required<any>();
+  private cartService = inject(CartService);
+
+  addToCart(): void {
+    this.cartService.addItem(this.base(), 'base');
+  }
 }

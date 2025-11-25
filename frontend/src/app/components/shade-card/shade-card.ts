@@ -1,4 +1,6 @@
-import { Component,ChangeDetectionStrategy, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, inject } from '@angular/core';
+import { CartService } from '../../services/cart-service';
+
 
 @Component({
   selector: 'app-shade-card',
@@ -8,4 +10,9 @@ import { Component,ChangeDetectionStrategy, input } from '@angular/core';
 })
 export class ShadeCard {
   shade = input.required<any>();
+  private cartService = inject(CartService);
+
+  addToCart(): void {
+    this.cartService.addItem(this.shade(), 'shade');
+  }
 }
