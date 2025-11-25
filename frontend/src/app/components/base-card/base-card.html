@@ -2,16 +2,16 @@
   <div class="w-72 h-[410px] shadow-md rounded-xl overflow-hidden hover:shadow-lg shadow-black-500 bg-slate-50">
 
     <img 
-      [src]="base.image"
+      [src]="base().image"
       alt="Imagem do produto"
       class="w-full h-62 object-cover"
     />
 
     <div class="p-4 space-y-5">
       <div class="flex justify-between">
-        <h3 class="text-lg font-semibold">{{ base.name }}</h3>
+        <h3 class="text-lg font-semibold">{{ base().name }}</h3>
         <a
-          [attr.href]="base?.url"
+          [attr.href]="base()?.url"
           target="_blank"
           class="bg-green-800 text-slate-100 rounded-md py-1 px-2 inline-block text-center"
         >
@@ -19,7 +19,7 @@
         </a>
       </div>
       
-      <p class="text-gray-600">R$ {{ base.price }}</p>
+      <p class="text-gray-600">R$ {{ base().price }}</p>
 
       <a
         target="_blank"

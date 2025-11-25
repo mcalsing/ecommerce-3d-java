@@ -13,15 +13,18 @@ public class Shade {
 
   private String url;
 
+  private String image;
+
   private double price;
 
   public Shade() {
   }
 
-  public Shade(String url, String name, double price) {
+  public Shade(String url, String name, double price, String image) {
     this.url = url;
     this.name = name;
     this.price = price;
+    this.image = image;
   }
 
   public String getUrl() {
@@ -46,5 +49,13 @@ public class Shade {
 
   public void setPrice(double price) {
     this.price = price;
+  }
+
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
   }
 }

@@ -1,12 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 
 @Component({
   selector: 'app-base-card',
-  //imports: [],
   standalone: true,
   templateUrl: './base-card.html',
   styleUrl: './base-card.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseCard {
-  @Input() base: any;
+  base = input.required<any>();
 }

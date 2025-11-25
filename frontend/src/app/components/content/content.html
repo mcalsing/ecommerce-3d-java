@@ -6,7 +6,7 @@
     <h2 class="text-4xl font-bold mb-4 text-center mt-5">Lampshade</h2>
 
     <div class="flex flex-wrap max-lg:justify-center justify-between">
-      @for (item of shade; track item.id) {
+      @for (item of shade(); track item.id) {
         <app-shade-card [shade]="item"></app-shade-card>
       }
     </div>
@@ -14,7 +14,7 @@
     <h2 class="text-4xl font-bold mb-4 text-center mt-5">Bases</h2>
 
     <div class="flex flex-wrap max-lg:justify-center justify-between">
-      @for (item of base; track item.id) {
+      @for (item of base(); track item.id) {
         <app-base-card [base]="item"></app-base-card>
       }
     </div>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/shades")
 public class ShadeController {
@@ -29,6 +30,6 @@ public class ShadeController {
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> delete(@PathVariable Long id) {
     service.delete(id);
-    return ResponseEntity.noContent().build(); // HTTP 204
+    return ResponseEntity.noContent().build();
   }
 }
