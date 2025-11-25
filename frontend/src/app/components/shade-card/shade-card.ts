@@ -1,10 +1,11 @@
 import { Component, ChangeDetectionStrategy, input, inject } from '@angular/core';
 import { CartService } from '../../services/cart-service';
-
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-shade-card',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './shade-card.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -27,6 +27,15 @@ public class BaseController {
     return ResponseEntity.ok(service.create(base));
   }
 
+  @GetMapping("/{id}")
+  public ResponseEntity<?> getById(@PathVariable Long id){
+    try {
+      return ResponseEntity.ok(service.getById(id));
+    } catch (Exception e){
+      return ResponseEntity.notFound().build();
+    }
+  }
+
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> delete(@PathVariable Long id) {
     service.delete(id);

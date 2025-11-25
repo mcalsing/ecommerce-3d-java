@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, signal, computed } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
+import { catchError, throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -36,5 +37,19 @@ export class ProductService {
         this.isLoading.set(false);
       }
     });
+  }
+
+  // tenta /shades/:id, em caso de 404 tenta /bases/:id
+  fetchProductById(id: number): Observable<any> {
+    const shadeReq = this.http.get<any>(`${this.url}shades/${id}`);
+    return shadeReq.pipe(
+      catchError(err => {
+        // se não encontrado, tenta base
+        if (err?.status === 404) {
+          return this.http.get<any>(`${this.url}bases/${id}`);
+        }
+        return throwError(() => err);
+      })
+    );
   }
 }

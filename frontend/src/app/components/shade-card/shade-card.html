@@ -26,9 +26,9 @@
       <button
         type="button"
         class="bg-green-800 text-slate-100 font-bold w-full rounded-md py-1"
-        (click)="addToCart()"
+        [routerLink]="['/product', shade().id]" 
       >
-        Add to cart
+        View details
       </button>
     </div>
   </div>

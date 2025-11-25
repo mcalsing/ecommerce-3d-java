@@ -1,9 +1,11 @@
 import { Component, ChangeDetectionStrategy, input, inject } from '@angular/core';
 import { CartService } from '../../services/cart-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-base-card',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './base-card.html',
   styleUrl: './base-card.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -22,6 +23,15 @@ public class BaseService {
 
   public Base create(Base base) {
     return repository.save(base);
+  }
+
+  public Base getById(Long id) {
+    Optional<Base> base = repository.findById(id);
+    if (base.isEmpty()) {
+      throw new RuntimeException("Base not found");
+    }
+
+    return base.get();
   }
 
   public void delete(Long id) {
