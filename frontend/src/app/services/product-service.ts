@@ -56,13 +56,6 @@ export class ProductService {
       image: 'https://images3dproducts.s3.us-east-1.amazonaws.com/shades/tornadoShade.png'
     },
     {
-      id: 3,
-      name: 'Tornado v2',
-      url: `${this.baseURL}https://images3dproducts.s3.us-east-1.amazonaws.com/shades/tornadoShadev2.stl`,
-      price: 69.90,
-      image: 'https://images3dproducts.s3.us-east-1.amazonaws.com/shades/tornadoShadev2.png'
-    },
-    {
       id: 4,
       name: 'Tornado v3',
       url: `${this.baseURL}https://images3dproducts.s3.us-east-1.amazonaws.com/shades/tornadoShadev3.stl`,

@@ -1,0 +1,44 @@
+<main class="px-5 max-w-[1440px] justify-between mx-auto mt-10 flex flex-wrap text-[#52522e]">
+  <div class="flex flex-col gap-5 w-fit mx-auto md:mx-0">
+    <div class="flex items-center gap-5 md:gap-10">
+      <div class="flex h-25 bg-[#ededde] items-center">
+        <img class="w-20 h-fit flex" src="https://m.media-amazon.com/images/I/71jSvCb6Q+L._AC_SX679_.jpg" alt="abajur">
+      </div>
+      <div class="flex flex-col gap-1">
+        <span class="text-lg md:text-xl">Vertex dfgfdgsfdgd</span>
+        <span class="text-sm text-slate-700">quantity: 4</span>
+      </div>
+      <span class="text-xl ml-10 whitespace-nowrap">$ 50,9</span>
+      <div class="w-8 h-8 bg-blue-400 rounded-sm cursor-pointer">
+        <img  class="px-2 py-2" src="./assets/close.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <section class="w-95 h-fit px-6 pt-8 border border-[#d1d1ad] rounded-sm mx-auto md:mx-0 mt-10 md:mt-0">
+    <h1 class="">Order Summary</h1>
+    <div class="flex justify-between mt-10 mb-3">
+      <span>Subtotal</span>
+      <span id="subtotal"></span>
+    </div>
+    <div class="flex justify-between mb-3">
+      <span>Shipping:</span>
+      <span>Free</span>
+    </div>
+    <div class="flex justify-between mb-6">
+      <span>Tax:</span>
+      <span id="tax"></span>
+    </div>
+    <p class="border-b border-[#d1d1ad] mb-6"></p>
+    <div class="flex justify-between mb-8">
+      <span>Total</span>
+      <span id="total"></span>
+    </div>
+    <button
+      id="checkout-btn"
+      class="cursor-pointer bg-green-800 text-white w-full mb-8 py-3 px-6 rounded-sm"
+      >
+      Checkout
+    </button>
+  </section>
+</main>
