@@ -24,7 +24,7 @@
           class="relative text-sm hover:text-slate-200 transition"
           (click)="cartModalOpen.set(true)"
         >
-          🛒
+          <i class="fa-solid fa-cart-shopping text-lg" ></i>
           @if (cartService.itemCount() > 0) {
             <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
               {{ cartService.itemCount() }}
