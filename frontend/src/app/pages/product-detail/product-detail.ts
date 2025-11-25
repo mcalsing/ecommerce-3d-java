@@ -5,7 +5,6 @@ import { CartService } from '../../services/cart-service';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [RouterLink],
   template: `
     <main class="max-w-4xl mx-auto p-4">
       @if (loading()) {
@@ -15,7 +14,7 @@ import { CartService } from '../../services/cart-service';
       } @else if (!product()) {
         <p>Produto não encontrado</p>
       } @else {
-        <div class="grid md:grid-cols-2 gap-6 items-start">
+        <div class="grid md:grid-cols-2 items-start mt-10">
           <div>
             <img
               [src]="product().image"
@@ -26,14 +25,14 @@ import { CartService } from '../../services/cart-service';
             />
           </div>
 
-          <div>
+          <div class="ml-15">
             <h1 class="text-2xl font-bold mb-2">{{ product().name }}</h1>
             <p class="text-gray-600 mb-4">R$ {{ product().price?.toFixed(2) }}</p>
             <p class="mb-6">{{ product().description || '' }}</p>
 
             <!-- COLORS SECTION -->
             <div class="mb-6">
-              <h2 class="text-b500 text-xs font-medium mb-2.5">CORES DISPONÍVEIS</h2>
+              <h2 class="text-b500 text-xs font-medium mb-2.5">AVAILABLE COLORS</h2>
               <div class="flex cursor-pointer gap-2.5 mb-4">
                 @for (color of availableColors; track color) {
                   <button
@@ -52,7 +51,7 @@ import { CartService } from '../../services/cart-service';
 
             <!-- QUANTITY SECTION -->
             <div class="mb-10">
-              <h2 class="text-b500 text-xs font-medium mb-2.5">QUANTIDADE</h2>
+              <h2 class="text-b500 text-xs font-medium mb-2.5">QUANTITY</h2>
               <div class="flex border border-gray-300 h-11 justify-between rounded w-41 items-center px-4">
                 <button
                   type="button"
@@ -81,12 +80,8 @@ import { CartService } from '../../services/cart-service';
                 class="bg-green-800 text-white px-6 py-2 rounded font-bold hover:bg-green-900"
                 (click)="addToCart()"
               >
-                Adicionar ao carrinho
+                Add to cart
               </button>
-
-              <a routerLink="/" class="px-6 py-2 rounded border border-gray-300 hover:bg-gray-50">
-                Voltar
-              </a>
             </div>
           </div>
         </div>
