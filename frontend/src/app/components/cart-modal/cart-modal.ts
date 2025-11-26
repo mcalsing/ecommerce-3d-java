@@ -130,7 +130,8 @@ export class CartModal {
     }
 
     const payload = {
-      userId: Number(localStorage.getItem('userId')),
+      //userId: Number(localStorage.getItem('userId')),
+      userId: 1,
       lampBaseId: base.id,
       lampBaseColor: base.color,
       lampShadeId: shade.id,
