@@ -41,13 +41,23 @@ public class AuthController {
     return ResponseEntity.ok(new LoginResponseDTO(token));
   }
 
+//  @PostMapping("/login")
+//  public ResponseEntity login(@RequestBody AuthDTO dto){
+//    // var emailPassword = new UsernamePasswordAuthenticationToken(dto.email(), dto.password());
+//    // var auth = this.authenticationManager.authenticate(emailPassword);
+//
+//    //    var token = tokenService.generateToken((User) auth.getPrincipal());
+//
+//    return ResponseEntity.ok().build();
+//  }
+
   @PostMapping("/register")
   public ResponseEntity register(@RequestBody RegisterDTO dto){
     if(this.userRepository.findByEmail(dto.email()) != null)
       return ResponseEntity.badRequest().build();
 
     String cryptedPassword = new BCryptPasswordEncoder().encode(dto.password());
-    User newUser = new User(dto.email(), cryptedPassword, dto.name(),  dto.role());
+    User newUser = new User(cryptedPassword, dto.email(), dto.name(),  dto.role());
 
     this.userRepository.save(newUser);
     return ResponseEntity.ok().build();

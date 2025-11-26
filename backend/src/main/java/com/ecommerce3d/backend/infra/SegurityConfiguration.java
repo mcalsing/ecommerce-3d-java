@@ -20,7 +20,8 @@ public class SegurityConfiguration {
             .csrf(csrf -> csrf.disable())
             .cors(cors -> {})
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/auth/login", "/auth/register").permitAll()
+                    .requestMatchers("/auth/login").permitAll()
+                    .requestMatchers( "/auth/register").permitAll()
                     .anyRequest().authenticated()
             );
 
