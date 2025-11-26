@@ -7,7 +7,7 @@ class Config:
     # Kafka Configuration
     KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
     KAFKA_TOPIC = os.getenv('KAFKA_TOPIC', 'order-print')
-    KAFKA_GROUP_ID = os.getenv('KAFKA_GROUP_ID', 'printer-consumer-group')
+    KAFKA_GROUP_ID = os.getenv('KAFKA_GROUP_ID', 'ecommerce-group')
     
     # BambuLab Printer Configuration
     PRINTER_IP = os.getenv('PRINTER_IP', '192.168.1.200')
