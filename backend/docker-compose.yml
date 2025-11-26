@@ -51,6 +51,15 @@ services:
     networks:
       - kafka-network
 
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - kafka-network
+
 networks:
   kafka-network:
     driver: bridge

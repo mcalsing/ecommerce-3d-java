@@ -10,8 +10,12 @@ import com.ecommerce3d.backend.models.User;
 import com.ecommerce3d.backend.repositories.OrderRepository;
 import com.ecommerce3d.backend.repositories.ProductRepository;
 import com.ecommerce3d.backend.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
@@ -36,6 +40,9 @@ public class OrderService {
   public List<Order> findAll() {
     return orderRepository.findAll();
   }
+
+  @Autowired
+  private EmailService emailService;
 
   @Transactional
   public Order create(OrderDTO dto) {
@@ -70,6 +77,9 @@ public class OrderService {
 
     // 6. Enviar para Kafka
     kafkaProducer.send(kafkaDTO);
+
+    // 7. Envio de email
+    emailService.sendOrderEmail(savedOrder);
 
     return savedOrder;
   }
