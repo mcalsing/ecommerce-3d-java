@@ -16,13 +16,11 @@ import { Shade } from '../../models/shade';
         <p>Shade não encontrado</p>
       } @else {
         <div class="grid md:grid-cols-2 items-start mt-10">
-          <div>
+          <div class="w-[450px] h-[450px]">
             <img
               [src]="shade()!.image"
               [alt]="shade()!.name"
-              width="600"
-              height="400"
-              class="w-full object-cover rounded"
+              class="w-full h-full object-cover rounded"
             />
           </div>
 
@@ -71,18 +69,6 @@ import { Shade } from '../../models/shade';
                   +
                 </button>
               </div>
-            </div>
-
-            <!-- 3D VIEW BUTTON -->
-            <div class="mb-4">
-              <a
-                [attr.href]="shade()!.url"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="bg-green-800 text-white px-6 py-2 rounded font-bold hover:bg-green-900 inline-block text-center"
-              >
-                View 3D
-              </a>
             </div>
 
             <!-- ADD TO CART BUTTON -->

@@ -32,9 +32,9 @@ import { OrderService } from '../../services/order-service';
               </div>
               <div class="flex flex-col w-full">
                 <h3 class="font-semibold text-green-800">{{ item.name }}</h3>
-                <p class="text-xs text-gray-500">
-                  {{ item.type === 'base' ? 'Base' : 'Shade' }} - {{ item.color }}
-                </p>
+                <!-- <p class="text-xs text-gray-500">
+                  //{{ item.type === 'base' ? 'Base' : 'Shade' }} - {{ item.color }}
+                </p> -->
                 <div class="flex items-center justify-between mt-1">
                   <p class="text-gray-600">R$ {{ item.price.toFixed(2) }}</p>
                   <div class="flex items-center gap-2">
@@ -71,7 +71,7 @@ import { OrderService } from '../../services/order-service';
       <div class="border-t p-4 space-y-4">
         @if (!hasValidOrder()) {
           <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-3 py-2 rounded text-sm">
-            ⚠️ You need exactly 1 base and 1 shade to complete the order
+            ⚠️ You need exactly 1 base and 1 lampshade to complete the order
           </div>
         }
 

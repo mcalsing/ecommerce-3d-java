@@ -17,8 +17,4 @@ export class BaseCard {
   addToCart(): void {
     this.cartService.addItem(this.base(), 'base', '#FFFFFF');
   }
-
-  consoleType(): void {
-    console.log(this.base)
-  }
 }
