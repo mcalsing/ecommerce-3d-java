@@ -3,24 +3,23 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../../services/product-service';
 import { CartService } from '../../services/cart-service';
 import { Shade } from '../../models/shade';
-import { Base } from '../../models/base';
 
 @Component({
-  selector: 'app-product-detail',
+  selector: 'app-shade-detail',
   template: `
     <main class="max-w-4xl mx-auto p-4">
       @if (loading()) {
         <p>Carregando...</p>
       } @else if (error()) {
         <p class="text-red-600">{{ error() }}</p>
-      } @else if (!product()) {
-        <p>Produto não encontrado</p>
+      } @else if (!shade()) {
+        <p>Shade não encontrado</p>
       } @else {
         <div class="grid md:grid-cols-2 items-start mt-10">
           <div>
             <img
-              [src]="product()!.image"
-              [alt]="product()!.name"
+              [src]="shade()!.image"
+              [alt]="shade()!.name"
               width="600"
               height="400"
               class="w-full object-cover rounded"
@@ -28,8 +27,8 @@ import { Base } from '../../models/base';
           </div>
 
           <div class="ml-15">
-            <h1 class="text-2xl font-bold mb-2">{{ product()!.name }}</h1>
-            <p class="text-gray-600 mb-4">R$ {{ product()!.price.toFixed(2) }}</p>
+            <h1 class="text-2xl font-bold mb-2">{{ shade()!.name }}</h1>
+            <p class="text-gray-600 mb-4">R$ {{ shade()!.price.toFixed(2) }}</p>
 
             <!-- COLORS SECTION -->
             <div class="mb-6">
@@ -74,6 +73,18 @@ import { Base } from '../../models/base';
               </div>
             </div>
 
+            <!-- 3D VIEW BUTTON -->
+            <div class="mb-4">
+              <a
+                [attr.href]="shade()!.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-green-800 text-white px-6 py-2 rounded font-bold hover:bg-green-900 inline-block text-center"
+              >
+                View 3D
+              </a>
+            </div>
+
             <!-- ADD TO CART BUTTON -->
             <div class="flex gap-3">
               <button
@@ -91,12 +102,12 @@ import { Base } from '../../models/base';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductDetail {
+export class ShadeDetail {
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
   private cartService = inject(CartService);
 
-  product = signal<(Shade | Base) | null>(null);
+  shade = signal<Shade | null>(null);
   loading = signal(true);
   error = signal<string | null>(null);
 
@@ -110,7 +121,7 @@ export class ProductDetail {
       const idRaw = pm.get('id');
       const id = idRaw ? Number(idRaw) : NaN;
       if (!Number.isFinite(id)) {
-        this.product.set(null);
+        this.shade.set(null);
         this.loading.set(false);
         this.error.set('ID inválido');
         return;
@@ -119,13 +130,13 @@ export class ProductDetail {
       this.loading.set(true);
       this.error.set(null);
       this.productService.fetchShadeById(id).subscribe({
-        next: (p: Shade | Base) => {
-          this.product.set(p);
+        next: (shade: Shade) => {
+          this.shade.set(shade);
           this.loading.set(false);
         },
         error: (err) => {
-          this.product.set(null);
-          this.error.set('Erro ao carregar produto');
+          this.shade.set(null);
+          this.error.set('Erro ao carregar shade');
           this.loading.set(false);
           console.error(err);
         },
@@ -142,17 +153,16 @@ export class ProductDetail {
   }
 
   addToCart(): void {
-    const p = this.product();
-    if (!p) return;
+    const shade = this.shade();
+    if (!shade) return;
 
     const qty = this.quantity();
     const color = this.selectedColor();
 
     for (let i = 0; i < qty; i++) {
-      this.cartService.addItem(p, p.type, color);
+      this.cartService.addItem(shade, 'shade', color);
     }
 
     this.quantity.set(1);
-    console.log(p.type)
   }
 }

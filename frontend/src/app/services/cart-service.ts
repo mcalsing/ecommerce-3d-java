@@ -9,6 +9,7 @@ export interface CartItem {
   quantity: number;
   image: string;
   type: 'shade' | 'base';
+  color: string;
 }
 
 @Injectable({
@@ -23,27 +24,24 @@ export class CartService {
     this.items().reduce((sum, item) => sum + item.price * item.quantity, 0)
   );
 
-  addItem(product: Shade | Base, type: 'shade' | 'base'): void {
-    this.items.update((current) => {
-      const existing = current.find((item) => item.id === product.id);
-      if (existing) {
-        return current.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [
-        ...current,
-        {
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          quantity: 1,
-          image: product.image,
-          type,
-        },
-      ];
-    });
-  }
+  addItem(product: Shade | Base, type: 'shade' | 'base', color: string): void {
+  this.items.update((current) => {
+    // Remove qualquer item do mesmo tipo antes de adicionar o novo
+    const filtered = current.filter(item => item.type !== type);
+    return [
+      ...filtered,
+      {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+        image: product.image,
+        type,
+        color
+      },
+    ];
+  });
+}
 
   removeItem(id: number): void {
     this.items.update((current) => current.filter((item) => item.id !== id));

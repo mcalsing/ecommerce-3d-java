@@ -3,6 +3,7 @@ package com.ecommerce3d.backend.models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "bases")
 public class Base {
 
   @Id
@@ -16,6 +17,9 @@ public class Base {
   private String image;
 
   private double price;
+
+  @Column(nullable = false)
+  private String type = "base";
 
   public Base() {
   }
@@ -57,5 +61,13 @@ public class Base {
 
   public void setImage(String image) {
     this.image = image;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 }

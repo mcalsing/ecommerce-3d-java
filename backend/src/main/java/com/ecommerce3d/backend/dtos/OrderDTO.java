@@ -4,11 +4,23 @@ public class OrderDTO {
 
   private Long userId;
 
-  private Long productId;
+  private Long lampShadeId;
 
-  public OrderDTO(Long userId, Long productId) {
+  private String lampShadeColor;
+
+  private Long lampBaseId;
+
+  private String lampBaseColor;
+
+  public OrderDTO() {
+  }
+
+  public OrderDTO(Long userId, String lampBaseColor, Long lampShadeId, Long lampBaseId, String lampShadeColor) {
     this.userId = userId;
-    this.productId = productId;
+    this.lampBaseColor = lampBaseColor;
+    this.lampShadeId = lampShadeId;
+    this.lampBaseId = lampBaseId;
+    this.lampShadeColor = lampShadeColor;
   }
 
   public Long getUserId() {
@@ -19,11 +31,35 @@ public class OrderDTO {
     this.userId = userId;
   }
 
-  public Long getProductId() {
-    return productId;
+  public String getLampBaseColor() {
+    return lampBaseColor;
   }
 
-  public void setProductId(Long productId) {
-    this.productId = productId;
+  public void setLampBaseColor(String lampBaseColor) {
+    this.lampBaseColor = lampBaseColor;
+  }
+
+  public Long getLampBaseId() {
+    return lampBaseId;
+  }
+
+  public void setLampBaseId(Long lampBaseId) {
+    this.lampBaseId = lampBaseId;
+  }
+
+  public String getLampShadeColor() {
+    return lampShadeColor;
+  }
+
+  public void setLampShadeColor(String lampShadeColor) {
+    this.lampShadeColor = lampShadeColor;
+  }
+
+  public Long getLampShadeId() {
+    return lampShadeId;
+  }
+
+  public void setLampShadeId(Long lampShadeId) {
+    this.lampShadeId = lampShadeId;
   }
 }

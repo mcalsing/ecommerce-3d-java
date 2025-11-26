@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { catchError, throwError, Observable } from 'rxjs';
+import { Shade } from '../models/shade';
+import { Base } from '../models/base';
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +11,8 @@ export class ProductService {
   private readonly http = inject(HttpClient);
   private readonly url = 'http://localhost:8080/';
 
-  // signals para gerenciar estado
-  shades = signal<any>([]);
-  bases = signal<any>([]);
+  shades = signal<Shade[]>([]);
+  bases = signal<Base[]>([]);
   isLoading = signal(false);
 
   constructor() {
@@ -21,33 +22,37 @@ export class ProductService {
 
   private loadShades(): void {
     this.isLoading.set(true);
-    this.http.get<any>(this.url + 'shades').subscribe({
+    this.http.get<Shade[]>(`${this.url}shades`).subscribe({
       next: (data) => {
         this.shades.set(data);
         this.isLoading.set(false);
-      }
+      },
+      error: () => this.isLoading.set(false),
     });
   }
 
   private loadBases(): void {
     this.isLoading.set(true);
-    this.http.get<any>(this.url + 'bases').subscribe({
+    this.http.get<Base[]>(`${this.url}bases`).subscribe({
       next: (data) => {
         this.bases.set(data);
         this.isLoading.set(false);
-      }
+      },
+      error: () => this.isLoading.set(false),
     });
   }
 
-  // tenta /shades/:id, em caso de 404 tenta /bases/:id
-  fetchProductById(id: number): Observable<any> {
-    const shadeReq = this.http.get<any>(`${this.url}shades/${id}`);
-    return shadeReq.pipe(
-      catchError(err => {
-        // se não encontrado, tenta base
-        if (err?.status === 404) {
-          return this.http.get<any>(`${this.url}bases/${id}`);
-        }
+  fetchShadeById(id: number): Observable<Shade> {
+    return this.http.get<Shade>(`${this.url}shades/${id}`).pipe(
+      catchError((err) => {
+        return throwError(() => err);
+      })
+    );
+  }
+
+  fetchBaseById(id: number): Observable<Base> {
+    return this.http.get<Base>(`${this.url}bases/${id}`).pipe(
+      catchError((err) => {
         return throwError(() => err);
       })
     );

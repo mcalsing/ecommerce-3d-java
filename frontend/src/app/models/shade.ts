@@ -4,4 +4,5 @@ export interface Shade {
   price: number;
   image: string;
   url?: string;
+  type: 'base';
 }

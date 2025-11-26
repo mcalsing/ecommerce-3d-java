@@ -40,6 +40,17 @@ services:
       timeout: 10s
       retries: 5
 
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: "kafka:29092"
+    depends_on:
+      - kafka
+    networks:
+      - kafka-network
+
 networks:
   kafka-network:
     driver: bridge

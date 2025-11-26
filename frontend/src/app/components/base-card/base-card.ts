@@ -15,6 +15,10 @@ export class BaseCard {
   private cartService = inject(CartService);
 
   addToCart(): void {
-    this.cartService.addItem(this.base(), 'base');
+    this.cartService.addItem(this.base(), 'base', '#FFFFFF');
+  }
+
+  consoleType(): void {
+    console.log(this.base)
   }
 }

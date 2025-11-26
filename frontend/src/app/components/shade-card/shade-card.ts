@@ -14,6 +14,6 @@ export class ShadeCard {
   private cartService = inject(CartService);
 
   addToCart(): void {
-    this.cartService.addItem(this.shade(), 'shade');
+    this.cartService.addItem(this.shade(), 'shade', '#FFFFFF');
   }
 }
