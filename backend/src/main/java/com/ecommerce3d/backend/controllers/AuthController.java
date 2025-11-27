@@ -37,19 +37,8 @@ public class AuthController {
     var auth = this.authenticationManager.authenticate(emailPassword);
 
     var token = tokenService.generateToken((User) auth.getPrincipal());
-
     return ResponseEntity.ok(new LoginResponseDTO(token));
   }
-
-//  @PostMapping("/login")
-//  public ResponseEntity login(@RequestBody AuthDTO dto){
-//    // var emailPassword = new UsernamePasswordAuthenticationToken(dto.email(), dto.password());
-//    // var auth = this.authenticationManager.authenticate(emailPassword);
-//
-//    //    var token = tokenService.generateToken((User) auth.getPrincipal());
-//
-//    return ResponseEntity.ok().build();
-//  }
 
   @PostMapping("/register")
   public ResponseEntity register(@RequestBody RegisterDTO dto){
