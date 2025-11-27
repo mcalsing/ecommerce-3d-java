@@ -34,8 +34,20 @@ public class AuthController {
     var emailPassword = new UsernamePasswordAuthenticationToken(dto.email(), dto.password());
     var auth = this.authenticationManager.authenticate(emailPassword);
 
-    var token = tokenService.generateToken((User) auth.getPrincipal());
-    return ResponseEntity.ok(new LoginResponseDTO(token));
+      // para retornar somente o token
+//    var token = tokenService.generateToken((User) auth.getPrincipal());
+//    return ResponseEntity.ok(new LoginResponseDTO(token));
+
+    // para retornar outros dados do usuário
+    User user = (User) auth.getPrincipal();
+    String token = tokenService.generateToken(user);
+
+    return ResponseEntity.ok(
+            new LoginResponseDTO(
+                    token,
+                    user.getEmail()
+            )
+    );
   }
 
   @PostMapping("/register")

@@ -113,12 +113,12 @@ export class Register {
     this.authService.register(this.formData).subscribe({
       next: () => {
         this.isLoading.set(false);
-        this.successMessage.set('Conta criada com sucesso! Faça login para continuar.');
+        this.successMessage.set('Conta criada com sucesso!');
         
-        // Redireciona para página de login após 2 segundos
+        // Redireciona para página de login após 2,5 segundos
         setTimeout(() => {
           this.router.navigate(['/login']);
-        }, 2000);
+        }, 2500);
       },
       error: (err) => {
         this.isLoading.set(false);

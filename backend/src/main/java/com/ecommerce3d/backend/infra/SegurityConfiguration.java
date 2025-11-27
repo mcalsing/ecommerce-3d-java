@@ -31,6 +31,8 @@ public class SegurityConfiguration {
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/auth/login").permitAll()
                     .requestMatchers("/auth/register").permitAll()
+                    .requestMatchers("/shades").permitAll()
+                    .requestMatchers("/bases").permitAll()
                     .anyRequest().authenticated()
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
