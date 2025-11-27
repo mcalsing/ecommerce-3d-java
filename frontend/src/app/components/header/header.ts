@@ -1,8 +1,9 @@
 import { Component, ChangeDetectionStrategy, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import { CartService } from '../../services/cart-service';
 import { CartModal } from '../cart-modal/cart-modal';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-header',
@@ -13,5 +14,12 @@ import { CartModal } from '../cart-modal/cart-modal';
 })
 export class Header {
   cartService = inject(CartService);
+  authService = inject(AuthService);
+  router = inject(Router);
+
   cartModalOpen = signal(false);
+
+  logout() {
+    this.authService.logout();
+  }
 }

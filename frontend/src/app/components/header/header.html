@@ -1,6 +1,7 @@
 <header class="bg-green-800 text-slate-100">
   <nav class="max-w-[1440px] mx-auto px-4 py-3">
     <div class="flex justify-between items-center mx-auto">
+      <!-- Logo -->
       <a routerLink="/" class="flex items-center">
         <img
           ngSrc="https://flowbite.com/docs/images/logo.svg"
@@ -11,6 +12,8 @@
         />
         <span class="self-center text-xl font-semibold whitespace-nowrap">LEAH 3D</span>
       </a>
+
+      <!-- Links -->
       <div class="justify-between items-center">
         <ul class="flex flex-row mt-0 gap-8 max-sm:gap-3">
           <li><a routerLink="/" class="py-2 hover:border-b">Home</a></li>
@@ -18,25 +21,57 @@
           <li><a routerLink="/marketplace" class="py-2 hover:border-b">Marketplace</a></li>
         </ul>
       </div>
+
+      <!-- Carrinho + Login/Logout -->
       <div class="flex items-center gap-5 max-sm:gap-2">
+
+        <!-- BOTÃO DO CARRINHO -->
         <button
           type="button"
           class="relative text-sm hover:text-slate-200 transition"
           (click)="cartModalOpen.set(true)"
         >
-          <i class="fa-solid fa-cart-shopping text-lg" ></i>
+          <i class="fa-solid fa-cart-shopping text-lg"></i>
+
           @if (cartService.itemCount() > 0) {
-            <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            <span
+              class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+            >
               {{ cartService.itemCount() }}
             </span>
           }
         </button>
-        <a routerLink="/login" class="text-sm">Log in</a>
-        <a routerLink="/register" class="text-sm">Register</a>
+
+        <!-- SE LOGADO -->
+        @if (authService.isAuthenticated()) {
+          <div class="flex items-center gap-3">
+            <span class="text-sm">
+              Olá,
+              <strong>{{ authService.currentUser()?.name || authService.currentUser()?.email }}</strong>
+            </span>
+
+            <button
+              (click)="logout()"
+              class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-sm font-medium"
+            >
+              Logout
+            </button>
+          </div>
+
+        } @else {
+
+          <!-- SE NÃO LOGADO -->
+          <div class="flex gap-3">
+            <a routerLink="/login" class="text-sm hover:text-slate-200">Log in</a>
+            <a routerLink="/register" class="text-sm hover:text-slate-200">Register</a>
+          </div>
+
+        }
       </div>
     </div>
   </nav>
 
+  <!-- MODAL DO CARRINHO -->
   @if (cartModalOpen()) {
     <app-cart-modal (close)="cartModalOpen.set(false)"></app-cart-modal>
   }
