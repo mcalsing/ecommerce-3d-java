@@ -45,11 +45,11 @@ public class OrderService {
   private EmailService emailService;
 
   @Transactional
-  public Order create(OrderDTO dto) {
+  public Order create(OrderDTO dto, User userLogged) {
 
-    // 1. Busca o usuário
-    User user = userRepository.findById(dto.getUserId())
-            .orElseThrow(() -> new RuntimeException("User not found"));
+//    // 1. Busca o usuário
+//    User user = userRepository.findByEmail(userLogged.getEmail())
+//            .orElseThrow(() -> new RuntimeException("User not found"));
 
     // 2. Criar ProductDTO para enviar ao ProductService
     ProductDTO productDTO = new ProductDTO();
@@ -62,9 +62,12 @@ public class OrderService {
     // 3. Criar produto
     Product product = productService.create(productDTO);
 
+
+
     // 4. Criar pedido
-    Order order = new Order(user, product);
+    Order order = new Order(userLogged, product);
     Order savedOrder = orderRepository.save(order);
+
 
     // 5. Criar DTO de Kafka
     OrderKafkaDTO kafkaDTO = new OrderKafkaDTO(

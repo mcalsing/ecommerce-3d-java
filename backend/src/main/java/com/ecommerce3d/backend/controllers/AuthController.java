@@ -45,15 +45,17 @@ public class AuthController {
     return ResponseEntity.ok(
             new LoginResponseDTO(
                     token,
-                    user.getEmail()
+                    user.getEmail(),
+                    user.getName()
             )
     );
   }
 
   @PostMapping("/register")
   public ResponseEntity register(@RequestBody RegisterDTO dto){
-    if(this.userRepository.findByEmail(dto.email()) != null)
-      return ResponseEntity.badRequest().build();
+    if (this.userRepository.findByEmail(dto.email()).isPresent()) {
+      return ResponseEntity.badRequest().body("Email já cadastrado");
+    }
 
     String cryptedPassword = new BCryptPasswordEncoder().encode(dto.password());
     User newUser = new User(cryptedPassword, dto.email(), dto.name(),  dto.role());

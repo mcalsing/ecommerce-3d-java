@@ -1,5 +1,6 @@
 package com.ecommerce3d.backend.infra;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ecommerce3d.backend.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -26,17 +27,38 @@ public class SecurityFilter extends OncePerRequestFilter {
   }
 
   @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-    var token  = this.recoverToken(request);
+  protected void doFilterInternal(
+          HttpServletRequest request,
+          HttpServletResponse response,
+          FilterChain filterChain
+  ) throws ServletException, IOException {
 
-    if(token!=null){
-      var subject = tokenService.validateToken(token);
-      UserDetails user = userRepository.findByEmail(subject);
+    String token = recoverToken(request);
 
-      var authentication = new UsernamePasswordAuthenticationToken(user,  null, user.getAuthorities());
+    if (token != null) {
 
-      SecurityContextHolder.getContext().setAuthentication(authentication);
+      DecodedJWT jwt = tokenService.validateToken(token);
+
+      if (jwt != null) {
+        // extrai dados do token
+        String email = jwt.getSubject();
+        Long userId = jwt.getClaim("id").asLong();
+
+        // busca o usuário no banco
+        UserDetails user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // cria autenticação
+        var authentication = new UsernamePasswordAuthenticationToken(
+                user,
+                null,
+                user.getAuthorities()
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+      }
     }
+
     filterChain.doFilter(request, response);
   }
 
