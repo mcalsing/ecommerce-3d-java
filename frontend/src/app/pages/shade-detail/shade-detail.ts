@@ -122,7 +122,7 @@ export class ShadeDetail {
         },
         error: (err) => {
           this.shade.set(null);
-          this.error.set('Erro ao carregar shade');
+          this.error.set('Acesso negado! Você precisa estar logado para acessar está página.');
           this.loading.set(false);
           console.error(err);
         },

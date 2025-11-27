@@ -122,7 +122,7 @@ export class BaseDetail {
         },
         error: (err) => {
           this.base.set(null);
-          this.error.set('Erro ao carregar base');
+          this.error.set('Acesso negado! Você precisa estar logado para acessar está página.');
           this.loading.set(false);
           console.error(err);
         },
