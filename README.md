@@ -180,6 +180,11 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Rodar o python consumer
+```
+pyhton3 test_kafka_consumer.py
+```
+
 ## Fluxo para testar uma compra no site
 
 - Criar um novo usuário no site.
